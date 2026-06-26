@@ -33,13 +33,36 @@ Por ser um protótipo acadêmico, os dados são armazenados em arquivos JavaScri
 ├── src
 │   ├── app.js
 │   ├── data
+│   │   ├── categorias.js
+│   │   ├── clientes.js
+│   │   ├── comanda_item.js
+│   │   ├── comandas.js
+│   │   ├── endereco.js
+│   │   ├── ifood_pedidos.js
+│   │   ├── mesas.js
+│   │   ├── pagamentos.js
+│   │   ├── pedido_itens.js
+│   │   ├── pedidos.js
+│   │   ├── produtos.js
+│   │   └── usuarios.js
 │   └── routes
+│       ├── categorias.routes.js
+│       ├── clientes.routes.js
+│       ├── comandas_item.routes.js
+│       ├── comandas.routes.js
+│       ├── integracao_ifood.routes.js
+│       ├── mesas.routes.js
+│       ├── pagamentos.routes.js
+│       ├── pedidos_itens.routes.js
+│       ├── pedidos.routes.js
+│       ├── produtos.routes.js
+│       ├── relatorios.routes.js
+│       └── usuarios.routes.js
 ├── package.json
 ├── package-lock.json
 ├── swagger.yaml
 └── README.md
 ```
-
 ### Principais pastas
 
 - `src/app.js`: arquivo principal da aplicação, responsável por configurar o servidor e registrar as rotas.
