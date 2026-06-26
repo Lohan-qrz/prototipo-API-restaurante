@@ -1,11 +1,13 @@
-export const mesas = [{
+export const mesas = [
+  {
     id: 1,
     numero: 10,
-    status: 'PAGO'
-},
+    status: 'PAGO',
+  },
 
-{
+  {
     id: 2,
     numero: 11,
-    status: 'PENDENTE'
-}]
+    status: 'PENDENTE',
+  },
+];

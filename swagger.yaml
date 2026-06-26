@@ -1,3314 +1,3191 @@
 {
-  "openapi": "3.0.3",
-  "info": {
-    "title": "Restaurante API Mock",
-    "version": "1.0.0",
-    "description": "Documentacao OpenAPI da API mock de restaurante, baseada nas rotas e nos formatos de resposta do projeto."
-  },
-  "servers": [
+  'openapi': '3.0.3',
+  'info':
     {
-      "url": "http://localhost:3000",
-      "description": "Servidor local"
-    }
-  ],
-  "tags": [
+      'title': 'Restaurante API Mock',
+      'version': '1.0.0',
+      'description': 'Documentacao OpenAPI da API mock de restaurante, baseada nas rotas e nos formatos de resposta do projeto.',
+    },
+  'servers':
+    [{ 'url': 'http://localhost:3000', 'description': 'Servidor local' }],
+  'tags':
+    [
+      { 'name': 'Status' },
+      { 'name': 'Categorias' },
+      { 'name': 'Clientes' },
+      { 'name': 'Comandas' },
+      { 'name': 'Comanda Itens' },
+      { 'name': 'Integracoes iFood' },
+      { 'name': 'Mesas' },
+      { 'name': 'Pagamentos' },
+      { 'name': 'Pedidos' },
+      { 'name': 'Pedido Itens' },
+      { 'name': 'Produtos' },
+      { 'name': 'Relatorios' },
+      { 'name': 'Usuarios' },
+    ],
+  'paths':
     {
-      "name": "Status"
-    },
-    {
-      "name": "Categorias"
-    },
-    {
-      "name": "Clientes"
-    },
-    {
-      "name": "Comandas"
-    },
-    {
-      "name": "Comanda Itens"
-    },
-    {
-      "name": "Integracoes iFood"
-    },
-    {
-      "name": "Mesas"
-    },
-    {
-      "name": "Pagamentos"
-    },
-    {
-      "name": "Pedidos"
-    },
-    {
-      "name": "Pedido Itens"
-    },
-    {
-      "name": "Produtos"
-    },
-    {
-      "name": "Relatorios"
-    },
-    {
-      "name": "Usuarios"
-    }
-  ],
-  "paths": {
-    "/": {
-      "get": {
-        "tags": [
-          "Status"
-        ],
-        "summary": "Retorna mensagem de status da API",
-        "responses": {
-          "200": {
-            "description": "API disponivel",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StatusResponse"
+      '/':
+        {
+          'get':
+            {
+              'tags': ['Status'],
+              'summary': 'Retorna mensagem de status da API',
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'API disponivel',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/StatusResponse',
+                                },
+                              'example': { 'message': 'API Restaurante Mock' },
+                            },
+                        },
+                    },
                 },
-                "example": {
-                  "message": "API Restaurante Mock"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/categorias": {
-      "get": {
-        "tags": [
-          "Categorias"
-        ],
-        "summary": "Lista categorias",
-        "responses": {
-          "200": {
-            "description": "Lista retornada com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Categoria"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Categorias"
-        ],
-        "summary": "Cria um registro em categorias",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CategoriaRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Registro criado com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Categoria"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/categorias/{id}": {
-      "get": {
-        "tags": [
-          "Categorias"
-        ],
-        "summary": "Busca um registro de categorias pelo id",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 1
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Registro encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Categoria"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Registro nao encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                },
-                "example": {
-                  "message": "Nao encontrado"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Categorias"
-        ],
-        "summary": "Remove um registro de categorias",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 1
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Registro removido com sucesso"
-          },
-          "404": {
-            "description": "Registro nao encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                },
-                "example": {
-                  "message": "Nao encontrado"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Categorias"
-        ],
-        "summary": "Atualiza um registro de categorias",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 1
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CategoriaRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Registro atualizado com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Categoria"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Registro nao encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                },
-                "example": {
-                  "message": "Nao encontrado"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/clientes": {
-      "get": {
-        "tags": [
-          "Clientes"
-        ],
-        "summary": "Lista clientes",
-        "responses": {
-          "200": {
-            "description": "Lista retornada com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Cliente"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Clientes"
-        ],
-        "summary": "Cria um registro em clientes",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ClienteRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Registro criado com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Cliente"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/clientes/{id}": {
-      "get": {
-        "tags": [
-          "Clientes"
-        ],
-        "summary": "Busca um registro de clientes pelo id",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 1
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Registro encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Cliente"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Registro nao encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                },
-                "example": {
-                  "message": "Nao encontrado"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Clientes"
-        ],
-        "summary": "Remove um registro de clientes",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 1
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Registro removido com sucesso"
-          },
-          "404": {
-            "description": "Registro nao encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                },
-                "example": {
-                  "message": "Nao encontrado"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Clientes"
-        ],
-        "summary": "Atualiza um registro de clientes",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 1
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ClienteRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Registro atualizado com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Cliente"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Registro nao encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                },
-                "example": {
-                  "message": "Nao encontrado"
-                }
-              }
-            }
-          }
-        }
-      },
-      "patch": {
-        "tags": [
-          "Clientes"
-        ],
-        "summary": "Atualiza parcialmente um registro de clientes",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 1
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ClienteRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Registro atualizado com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Cliente"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Registro nao encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                },
-                "example": {
-                  "message": "Nao encontrado"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/comandas": {
-      "get": {
-        "tags": [
-          "Comandas"
-        ],
-        "summary": "Lista comandas",
-        "responses": {
-          "200": {
-            "description": "Lista retornada com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Comanda"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Comandas"
-        ],
-        "summary": "Cria um registro em comandas",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ComandaRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Registro criado com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Comanda"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/comandas/{id}": {
-      "get": {
-        "tags": [
-          "Comandas"
-        ],
-        "summary": "Busca um registro de comandas pelo id",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 1
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Registro encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Comanda"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Registro nao encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                },
-                "example": {
-                  "message": "Nao encontrado"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Comandas"
-        ],
-        "summary": "Remove um registro de comandas",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 1
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Registro removido com sucesso"
-          },
-          "404": {
-            "description": "Registro nao encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                },
-                "example": {
-                  "message": "Nao encontrado"
-                }
-              }
-            }
-          }
-        }
-      },
-      "patch": {
-        "tags": [
-          "Comandas"
-        ],
-        "summary": "Atualiza parcialmente um registro de comandas",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 1
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ComandaRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Registro atualizado com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Comanda"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Registro nao encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                },
-                "example": {
-                  "message": "Nao encontrado"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/comandas/{id}/itens": {
-      "get": {
-        "tags": [
-          "Comanda Itens"
-        ],
-        "summary": "Lista itens de Comanda",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 1
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Itens retornados com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ComandaItemResponse"
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Comanda nao encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Comanda Itens"
-        ],
-        "summary": "Cria item em Comanda",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 1
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ItemRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Item criado com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ComandaItemResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Comanda nao encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/comandas/{id}/itens/{itemId}": {
-      "get": {
-        "tags": [
-          "Comanda Itens"
-        ],
-        "summary": "Busca item pelo id",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 1
-            }
-          },
-          {
-            "name": "itemId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 1
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Item encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ComandaItemResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Item nao encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                },
-                "example": {
-                  "message": "Item nao encontrado"
-                }
-              }
-            }
-          }
-        }
-      },
-      "patch": {
-        "tags": [
-          "Comanda Itens"
-        ],
-        "summary": "Atualiza parcialmente um item",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 1
-            }
-          },
-          {
-            "name": "itemId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 1
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ItemRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Item atualizado com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ComandaItemResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Item nao encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                },
-                "example": {
-                  "message": "Item nao encontrado"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Comanda Itens"
-        ],
-        "summary": "Remove um item",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 1
-            }
-          },
-          {
-            "name": "itemId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 1
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Item removido com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ItemRemovidoResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Item nao encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                },
-                "example": {
-                  "message": "Item nao encontrado"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/integracoes/ifood/pedidos": {
-      "get": {
-        "tags": [
-          "Integracoes iFood"
-        ],
-        "summary": "Lista pedidos recebidos do iFood",
-        "responses": {
-          "200": {
-            "description": "Pedidos do iFood retornados com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/IfoodPedido"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/integracoes/ifood/pedidos/{id}": {
-      "get": {
-        "tags": [
-          "Integracoes iFood"
-        ],
-        "summary": "Busca pedido do iFood pelo id interno",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 1
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Pedido do iFood encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/IfoodPedido"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Pedido do iFood nao encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                },
-                "example": {
-                  "message": "Pedido do iFood nao encontrado"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/integracoes/ifood/webhook": {
-      "post": {
-        "tags": [
-          "Integracoes iFood"
-        ],
-        "summary": "Recebe webhook de pedido do iFood",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/IfoodWebhookPayload"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Webhook recebido com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/IfoodWebhookResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Payload invalido",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                },
-                "example": {
-                  "message": "Payload invalido"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/mesas": {
-      "get": {
-        "tags": [
-          "Mesas"
-        ],
-        "summary": "Lista mesas",
-        "responses": {
-          "200": {
-            "description": "Lista retornada com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Mesa"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Mesas"
-        ],
-        "summary": "Cria um registro em mesas",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MesaRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Registro criado com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Mesa"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/mesas/{id}": {
-      "get": {
-        "tags": [
-          "Mesas"
-        ],
-        "summary": "Busca um registro de mesas pelo id",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 1
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Registro encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Mesa"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Registro nao encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                },
-                "example": {
-                  "message": "Nao encontrado"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Mesas"
-        ],
-        "summary": "Remove um registro de mesas",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 1
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Registro removido com sucesso"
-          },
-          "404": {
-            "description": "Registro nao encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                },
-                "example": {
-                  "message": "Nao encontrado"
-                }
-              }
-            }
-          }
-        }
-      },
-      "patch": {
-        "tags": [
-          "Mesas"
-        ],
-        "summary": "Atualiza parcialmente um registro de mesas",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 1
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MesaRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Registro atualizado com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Mesa"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Registro nao encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                },
-                "example": {
-                  "message": "Nao encontrado"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/pagamentos": {
-      "get": {
-        "tags": [
-          "Pagamentos"
-        ],
-        "summary": "Lista pagamentos",
-        "responses": {
-          "200": {
-            "description": "Lista retornada com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Pagamento"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Pagamentos"
-        ],
-        "summary": "Cria um registro em pagamentos",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PagamentoRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Registro criado com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Pagamento"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/pagamentos/{id}": {
-      "get": {
-        "tags": [
-          "Pagamentos"
-        ],
-        "summary": "Busca um registro de pagamentos pelo id",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 1
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Registro encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Pagamento"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Registro nao encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                },
-                "example": {
-                  "message": "Nao encontrado"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Pagamentos"
-        ],
-        "summary": "Remove um registro de pagamentos",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 1
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Registro removido com sucesso"
-          },
-          "404": {
-            "description": "Registro nao encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                },
-                "example": {
-                  "message": "Nao encontrado"
-                }
-              }
-            }
-          }
-        }
-      },
-      "patch": {
-        "tags": [
-          "Pagamentos"
-        ],
-        "summary": "Atualiza parcialmente um registro de pagamentos",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 1
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PagamentoRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Registro atualizado com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Pagamento"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Registro nao encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                },
-                "example": {
-                  "message": "Nao encontrado"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/pedidos": {
-      "get": {
-        "tags": [
-          "Pedidos"
-        ],
-        "summary": "Lista pedidos",
-        "responses": {
-          "200": {
-            "description": "Lista retornada com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Pedido"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Pedidos"
-        ],
-        "summary": "Cria um registro em pedidos",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PedidoRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Registro criado com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Pedido"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/pedidos/{id}": {
-      "get": {
-        "tags": [
-          "Pedidos"
-        ],
-        "summary": "Busca um registro de pedidos pelo id",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 1
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Registro encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Pedido"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Registro nao encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                },
-                "example": {
-                  "message": "Nao encontrado"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Pedidos"
-        ],
-        "summary": "Remove um registro de pedidos",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 1
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Registro removido com sucesso"
-          },
-          "404": {
-            "description": "Registro nao encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                },
-                "example": {
-                  "message": "Nao encontrado"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Pedidos"
-        ],
-        "summary": "Atualiza um registro de pedidos",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 1
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PedidoRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Registro atualizado com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Pedido"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Registro nao encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                },
-                "example": {
-                  "message": "Nao encontrado"
-                }
-              }
-            }
-          }
-        }
-      },
-      "patch": {
-        "tags": [
-          "Pedidos"
-        ],
-        "summary": "Atualiza parcialmente um registro de pedidos",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 1
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PedidoRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Registro atualizado com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Pedido"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Registro nao encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                },
-                "example": {
-                  "message": "Nao encontrado"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/pedidos/{id}/itens": {
-      "get": {
-        "tags": [
-          "Pedido Itens"
-        ],
-        "summary": "Lista itens de Pedido",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 1
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Itens retornados com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/PedidoItemResponse"
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Pedido nao encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Pedido Itens"
-        ],
-        "summary": "Cria item em Pedido",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 1
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ItemRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Item criado com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PedidoItemResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Pedido nao encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/pedidos/{id}/itens/{itemId}": {
-      "get": {
-        "tags": [
-          "Pedido Itens"
-        ],
-        "summary": "Busca item pelo id",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 1
-            }
-          },
-          {
-            "name": "itemId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 1
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Item encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PedidoItemResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Item nao encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                },
-                "example": {
-                  "message": "Item nao encontrado"
-                }
-              }
-            }
-          }
-        }
-      },
-      "patch": {
-        "tags": [
-          "Pedido Itens"
-        ],
-        "summary": "Atualiza parcialmente um item",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 1
-            }
-          },
-          {
-            "name": "itemId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 1
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ItemRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Item atualizado com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PedidoItemResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Item nao encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                },
-                "example": {
-                  "message": "Item nao encontrado"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Pedido Itens"
-        ],
-        "summary": "Remove um item",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 1
-            }
-          },
-          {
-            "name": "itemId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 1
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Item removido com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ItemRemovidoResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Item nao encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                },
-                "example": {
-                  "message": "Item nao encontrado"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/produtos": {
-      "get": {
-        "tags": [
-          "Produtos"
-        ],
-        "summary": "Lista produtos",
-        "responses": {
-          "200": {
-            "description": "Lista retornada com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Produto"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Produtos"
-        ],
-        "summary": "Cria um registro em produtos",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ProdutoRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Registro criado com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Produto"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/produtos/{id}": {
-      "get": {
-        "tags": [
-          "Produtos"
-        ],
-        "summary": "Busca um registro de produtos pelo id",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 1
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Registro encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Produto"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Registro nao encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                },
-                "example": {
-                  "message": "Nao encontrado"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Produtos"
-        ],
-        "summary": "Remove um registro de produtos",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 1
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Registro removido com sucesso"
-          },
-          "404": {
-            "description": "Registro nao encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                },
-                "example": {
-                  "message": "Nao encontrado"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Produtos"
-        ],
-        "summary": "Atualiza um registro de produtos",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 1
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ProdutoRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Registro atualizado com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Produto"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Registro nao encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                },
-                "example": {
-                  "message": "Nao encontrado"
-                }
-              }
-            }
-          }
-        }
-      },
-      "patch": {
-        "tags": [
-          "Produtos"
-        ],
-        "summary": "Atualiza parcialmente um registro de produtos",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 1
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ProdutoRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Registro atualizado com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Produto"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Registro nao encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                },
-                "example": {
-                  "message": "Nao encontrado"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/relatorios/vendas": {
-      "get": {
-        "tags": [
-          "Relatorios"
-        ],
-        "summary": "Retorna quantidade de pedidos e valor total vendido",
-        "responses": {
-          "200": {
-            "description": "Relatorio retornado com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RelatorioVendas"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/relatorios/faturamento": {
-      "get": {
-        "tags": [
-          "Relatorios"
-        ],
-        "summary": "Retorna faturamento total dos pagamentos pagos",
-        "responses": {
-          "200": {
-            "description": "Relatorio retornado com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RelatorioFaturamento"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/relatorios/produtos-mais-vendidos": {
-      "get": {
-        "tags": [
-          "Relatorios"
-        ],
-        "summary": "Retorna ranking de produtos mais vendidos",
-        "responses": {
-          "200": {
-            "description": "Relatorio retornado com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ProdutoMaisVendido"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/relatorios/vendas-por-funcionario": {
-      "get": {
-        "tags": [
-          "Relatorios"
-        ],
-        "summary": "Retorna total de vendas por funcionario",
-        "responses": {
-          "200": {
-            "description": "Relatorio retornado com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/VendasPorFuncionario"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/usuarios": {
-      "get": {
-        "tags": [
-          "Usuarios"
-        ],
-        "summary": "Lista usuarios",
-        "responses": {
-          "200": {
-            "description": "Lista retornada com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Usuario"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Usuarios"
-        ],
-        "summary": "Cria um registro em usuarios",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UsuarioRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Registro criado com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Usuario"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/usuarios/{id}": {
-      "get": {
-        "tags": [
-          "Usuarios"
-        ],
-        "summary": "Busca um registro de usuarios pelo id",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 1
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Registro encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Usuario"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Registro nao encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                },
-                "example": {
-                  "message": "Nao encontrado"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Usuarios"
-        ],
-        "summary": "Remove um registro de usuarios",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 1
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Registro removido com sucesso"
-          },
-          "404": {
-            "description": "Registro nao encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                },
-                "example": {
-                  "message": "Nao encontrado"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Usuarios"
-        ],
-        "summary": "Atualiza um registro de usuarios",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 1
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UsuarioRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Registro atualizado com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Usuario"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Registro nao encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                },
-                "example": {
-                  "message": "Nao encontrado"
-                }
-              }
-            }
-          }
-        }
-      },
-      "patch": {
-        "tags": [
-          "Usuarios"
-        ],
-        "summary": "Atualiza parcialmente um registro de usuarios",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 1
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UsuarioRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Registro atualizado com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Usuario"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Registro nao encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                },
-                "example": {
-                  "message": "Nao encontrado"
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  "components": {
-    "schemas": {
-      "StatusResponse": {
-        "type": "object",
-        "properties": {
-          "message": {
-            "type": "string",
-            "example": "API Restaurante Mock"
-          }
-        }
-      },
-      "Error": {
-        "type": "object",
-        "properties": {
-          "message": {
-            "type": "string",
-            "example": "Nao encontrado"
-          }
-        }
-      },
-      "Categoria": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "example": 1
-          },
-          "nome": {
-            "type": "string",
-            "example": "lanches"
-          }
-        },
-        "required": [
-          "id",
-          "nome"
-        ]
-      },
-      "CategoriaRequest": {
-        "type": "object",
-        "additionalProperties": true,
-        "properties": {
-          "nome": {
-            "type": "string",
-            "example": "lanches"
-          }
-        }
-      },
-      "Cliente": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "example": 1
-          },
-          "nome": {
-            "type": "string",
-            "example": "Joao"
-          },
-          "telefone": {
-            "type": "string",
-            "example": "83999999999"
-          },
-          "endereco_id": {
-            "type": "integer",
-            "example": 1
-          }
-        },
-        "required": [
-          "id",
-          "nome",
-          "telefone",
-          "endereco_id"
-        ]
-      },
-      "ClienteRequest": {
-        "type": "object",
-        "additionalProperties": true,
-        "properties": {
-          "nome": {
-            "type": "string",
-            "example": "Joao"
-          },
-          "telefone": {
-            "type": "string",
-            "example": "83999999999"
-          },
-          "endereco_id": {
-            "type": "integer",
-            "example": 1
-          }
-        }
-      },
-      "Comanda": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "example": 1
-          },
-          "mesa_id": {
-            "type": "integer",
-            "example": 1
-          },
-          "status": {
-            "type": "string",
-            "example": "ABERTA"
-          },
-          "aberta_em": {
-            "type": "string",
-            "format": "date-time",
-            "example": "2026-08-22T23:00:00.000Z"
-          },
-          "fechada_em": {
-            "type": "string",
-            "format": "date-time",
-            "example": "2026-08-23T01:00:00.000Z"
-          }
-        },
-        "required": [
-          "id",
-          "mesa_id",
-          "status",
-          "aberta_em",
-          "fechada_em"
-        ]
-      },
-      "ComandaRequest": {
-        "type": "object",
-        "additionalProperties": true,
-        "properties": {
-          "mesa_id": {
-            "type": "integer",
-            "example": 1
-          },
-          "status": {
-            "type": "string",
-            "example": "ABERTA"
-          },
-          "aberta_em": {
-            "type": "string",
-            "format": "date-time",
-            "example": "2026-08-22T23:00:00.000Z"
-          },
-          "fechada_em": {
-            "type": "string",
-            "format": "date-time",
-            "example": "2026-08-23T01:00:00.000Z"
-          }
-        }
-      },
-      "Produto": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "example": 1
-          },
-          "nome": {
-            "type": "string",
-            "example": "X-Burguer"
-          },
-          "descricao": {
-            "type": "string",
-            "example": "pao bola, carne, queijo mussarela, ovo, bacon e salada"
-          },
-          "preco": {
-            "type": "number",
-            "format": "float",
-            "example": 23
-          },
-          "categoria_id": {
-            "type": "integer",
-            "example": 1
-          }
-        },
-        "required": [
-          "id",
-          "nome",
-          "descricao",
-          "preco",
-          "categoria_id"
-        ]
-      },
-      "ProdutoRequest": {
-        "type": "object",
-        "additionalProperties": true,
-        "properties": {
-          "nome": {
-            "type": "string",
-            "example": "X-Burguer"
-          },
-          "descricao": {
-            "type": "string",
-            "example": "pao bola, carne, queijo mussarela, ovo, bacon e salada"
-          },
-          "preco": {
-            "type": "number",
-            "format": "float",
-            "example": 23
-          },
-          "categoria_id": {
-            "type": "integer",
-            "example": 1
-          }
-        }
-      },
-      "Mesa": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "example": 1
-          },
-          "numero": {
-            "type": "integer",
-            "example": 10
-          },
-          "status": {
-            "type": "string",
-            "example": "PAGO"
-          }
-        },
-        "required": [
-          "id",
-          "numero",
-          "status"
-        ]
-      },
-      "MesaRequest": {
-        "type": "object",
-        "additionalProperties": true,
-        "properties": {
-          "numero": {
-            "type": "integer",
-            "example": 10
-          },
-          "status": {
-            "type": "string",
-            "example": "PAGO"
-          }
-        }
-      },
-      "Pedido": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "example": 1
-          },
-          "tipo": {
-            "type": "string",
-            "example": "BALCAO"
-          },
-          "status": {
-            "type": "string",
-            "example": "AGUARDANDO"
-          },
-          "cliente_id": {
-            "type": "integer",
-            "example": 1
-          },
-          "usuario_id": {
-            "type": "integer",
-            "example": 2
-          },
-          "total": {
-            "type": "number",
-            "format": "float",
-            "example": 18.5
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "example": "2026-08-22T17:30:00.000Z"
-          }
-        },
-        "required": [
-          "id",
-          "tipo",
-          "status",
-          "cliente_id",
-          "usuario_id",
-          "total",
-          "created_at"
-        ]
-      },
-      "PedidoRequest": {
-        "type": "object",
-        "additionalProperties": true,
-        "properties": {
-          "tipo": {
-            "type": "string",
-            "example": "BALCAO"
-          },
-          "status": {
-            "type": "string",
-            "example": "AGUARDANDO"
-          },
-          "cliente_id": {
-            "type": "integer",
-            "example": 1
-          },
-          "usuario_id": {
-            "type": "integer",
-            "example": 2
-          },
-          "total": {
-            "type": "number",
-            "format": "float",
-            "example": 18.5
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "example": "2026-08-22T17:30:00.000Z"
-          }
-        }
-      },
-      "ItemRequest": {
-        "type": "object",
-        "additionalProperties": true,
-        "properties": {
-          "quantidade": {
-            "type": "integer",
-            "example": 2
-          },
-          "preco_unitario": {
-            "type": "number",
-            "format": "float",
-            "example": 20
-          },
-          "observacao": {
-            "type": "string",
-            "example": "sem cebola"
-          },
-          "produto_id": {
-            "type": "integer",
-            "example": 1
-          }
-        }
-      },
-      "PedidoItem": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "example": 1
-          },
-          "quantidade": {
-            "type": "integer",
-            "example": 2
-          },
-          "preco_unitario": {
-            "type": "number",
-            "format": "float",
-            "example": 20
-          },
-          "observacao": {
-            "type": "string",
-            "example": ""
-          },
-          "produto_id": {
-            "type": "integer",
-            "example": 1
-          },
-          "pedido_id": {
-            "type": "integer",
-            "example": 1
-          }
-        },
-        "required": [
-          "id",
-          "quantidade",
-          "preco_unitario",
-          "observacao",
-          "produto_id",
-          "pedido_id"
-        ]
-      },
-      "PedidoItemResponse": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/PedidoItem"
-          },
-          {
-            "type": "object",
-            "properties": {
-              "produto": {
-                "nullable": true,
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/Produto"
-                  }
-                ]
-              }
             },
-            "required": [
-              "produto"
-            ]
-          }
-        ]
-      },
-      "ComandaItem": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "example": 1
-          },
-          "comanda_id": {
-            "type": "integer",
-            "example": 1
-          },
-          "produto_id": {
-            "type": "integer",
-            "example": 1
-          },
-          "quantidade": {
-            "type": "integer",
-            "example": 2
-          },
-          "preco_unitario": {
-            "type": "number",
-            "format": "float",
-            "example": 14
-          },
-          "observacao": {
-            "type": "string",
-            "example": "sem cebola"
-          }
         },
-        "required": [
-          "id",
-          "comanda_id",
-          "produto_id",
-          "quantidade",
-          "preco_unitario",
-          "observacao"
-        ]
-      },
-      "ComandaItemResponse": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/ComandaItem"
-          },
-          {
-            "type": "object",
-            "properties": {
-              "produto": {
-                "nullable": true,
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/Produto"
-                  }
-                ]
-              }
+      '/categorias':
+        {
+          'get':
+            {
+              'tags': ['Categorias'],
+              'summary': 'Lista categorias',
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'Lista retornada com sucesso',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                {
+                                  'type': 'array',
+                                  'items':
+                                    {
+                                      '$ref': '#/components/schemas/Categoria',
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
             },
-            "required": [
-              "produto"
-            ]
-          }
-        ]
-      },
-      "ItemRemovidoResponse": {
-        "type": "object",
-        "properties": {
-          "message": {
-            "type": "string",
-            "example": "Item removido com sucesso"
-          },
-          "item": {
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/PedidoItemResponse"
-              },
-              {
-                "$ref": "#/components/schemas/ComandaItemResponse"
-              }
-            ]
-          }
-        },
-        "required": [
-          "message",
-          "item"
-        ]
-      },
-      "Pagamento": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "example": 1
-          },
-          "pedido_id": {
-            "type": "integer",
-            "example": 1
-          },
-          "metodo": {
-            "type": "string",
-            "example": "PIX"
-          },
-          "valor": {
-            "type": "number",
-            "format": "float",
-            "example": 50.25
-          },
-          "status": {
-            "type": "string",
-            "example": "PAGO"
-          },
-          "pago_em": {
-            "type": "string",
-            "format": "date-time",
-            "example": "2026-08-22T17:30:00.000Z"
-          }
-        },
-        "required": [
-          "id",
-          "pedido_id",
-          "metodo",
-          "valor",
-          "status",
-          "pago_em"
-        ]
-      },
-      "PagamentoRequest": {
-        "type": "object",
-        "additionalProperties": true,
-        "properties": {
-          "pedido_id": {
-            "type": "integer",
-            "example": 1
-          },
-          "metodo": {
-            "type": "string",
-            "example": "PIX"
-          },
-          "valor": {
-            "type": "number",
-            "format": "float",
-            "example": 50.25
-          },
-          "status": {
-            "type": "string",
-            "example": "PAGO"
-          },
-          "pago_em": {
-            "type": "string",
-            "format": "date-time",
-            "example": "2026-08-22T17:30:00.000Z"
-          }
-        }
-      },
-      "Usuario": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "example": 1
-          },
-          "nome": {
-            "type": "string",
-            "example": "Administrador"
-          },
-          "email": {
-            "type": "string",
-            "format": "email",
-            "example": "admin@restaurante.com"
-          },
-          "senha_hash": {
-            "type": "string",
-            "example": "$2b$10$W5Fh3VjX0L8M4s5bM2v9Y.6p6tP7vG0hT8xN2w9WzKz0hXjJ1mQeW"
-          },
-          "funcao": {
-            "type": "string",
-            "example": "ADMIN"
-          }
-        },
-        "required": [
-          "id",
-          "nome",
-          "email",
-          "senha_hash",
-          "funcao"
-        ]
-      },
-      "UsuarioRequest": {
-        "type": "object",
-        "additionalProperties": true,
-        "properties": {
-          "nome": {
-            "type": "string",
-            "example": "Administrador"
-          },
-          "email": {
-            "type": "string",
-            "format": "email",
-            "example": "admin@restaurante.com"
-          },
-          "senha_hash": {
-            "type": "string",
-            "example": "$2b$10$W5Fh3VjX0L8M4s5bM2v9Y.6p6tP7vG0hT8xN2w9WzKz0hXjJ1mQeW"
-          },
-          "funcao": {
-            "type": "string",
-            "example": "ADMIN"
-          }
-        }
-      },
-      "IfoodPedido": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "example": 1
-          },
-          "pedido_id": {
-            "type": "integer",
-            "nullable": true,
-            "example": 1
-          },
-          "ifood_order_id": {
-            "type": "string",
-            "example": "ord_456"
-          },
-          "payload_json": {
-            "$ref": "#/components/schemas/IfoodWebhookPayload"
-          },
-          "status_ifood": {
-            "type": "string",
-            "example": "PREPARATION_STARTED"
-          },
-          "sincronizado_em": {
-            "type": "string",
-            "format": "date-time",
-            "example": "2026-06-24T12:00:00.000Z"
-          }
-        },
-        "required": [
-          "id",
-          "pedido_id",
-          "ifood_order_id",
-          "payload_json",
-          "status_ifood",
-          "sincronizado_em"
-        ]
-      },
-      "IfoodWebhookPayload": {
-        "type": "object",
-        "additionalProperties": true,
-        "properties": {
-          "id": {
-            "type": "string",
-            "example": "ord_456"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time",
-            "example": "2026-08-20T19:30:00Z"
-          },
-          "customer": {
-            "type": "object",
-            "properties": {
-              "name": {
-                "type": "string",
-                "example": "Joao Silva"
-              },
-              "phone": {
-                "type": "string",
-                "example": "83999999999"
-              }
-            }
-          },
-          "delivery": {
-            "type": "object",
-            "properties": {
-              "deliveryAddress": {
-                "type": "object",
-                "properties": {
-                  "streetName": {
-                    "type": "string",
-                    "example": "Rua Aprigio Veloso"
-                  },
-                  "streetNumber": {
-                    "type": "string",
-                    "example": "882"
-                  },
-                  "neighborhood": {
-                    "type": "string",
-                    "example": "Universitario"
-                  },
-                  "city": {
-                    "type": "string",
-                    "example": "Campina Grande"
-                  },
-                  "state": {
-                    "type": "string",
-                    "example": "PB"
-                  },
-                  "postalCode": {
-                    "type": "string",
-                    "example": "58429-900"
-                  },
-                  "country": {
-                    "type": "string",
-                    "example": "BR"
-                  },
-                  "reference": {
-                    "type": "string",
-                    "example": "Proximo ao IFPB"
-                  }
-                }
-              }
-            }
-          },
-          "items": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "string",
-                  "example": "item_1"
+          'post':
+            {
+              'tags': ['Categorias'],
+              'summary': 'Cria um registro em categorias',
+              'requestBody':
+                {
+                  'required': true,
+                  'content':
+                    {
+                      'application/json':
+                        {
+                          'schema':
+                            { '$ref': '#/components/schemas/CategoriaRequest' },
+                        },
+                    },
                 },
-                "name": {
-                  "type": "string",
-                  "example": "X-Burguer"
+              'responses':
+                {
+                  '201':
+                    {
+                      'description': 'Registro criado com sucesso',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Categoria' },
+                            },
+                        },
+                    },
                 },
-                "quantity": {
-                  "type": "integer",
-                  "example": 2
+            },
+        },
+      '/categorias/{id}':
+        {
+          'get':
+            {
+              'tags': ['Categorias'],
+              'summary': 'Busca um registro de categorias pelo id',
+              'parameters':
+                [
+                  {
+                    'name': 'id',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'integer', 'example': 1 },
+                  },
+                ],
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'Registro encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Categoria' },
+                            },
+                        },
+                    },
+                  '404':
+                    {
+                      'description': 'Registro nao encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Error' },
+                              'example': { 'message': 'Nao encontrado' },
+                            },
+                        },
+                    },
                 },
-                "unitPrice": {
-                  "type": "number",
-                  "format": "float",
-                  "example": 18
-                }
-              }
-            }
-          },
-          "payments": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "method": {
-                  "type": "string",
-                  "example": "ONLINE"
+            },
+          'delete':
+            {
+              'tags': ['Categorias'],
+              'summary': 'Remove um registro de categorias',
+              'parameters':
+                [
+                  {
+                    'name': 'id',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'integer', 'example': 1 },
+                  },
+                ],
+              'responses':
+                {
+                  '204': { 'description': 'Registro removido com sucesso' },
+                  '404':
+                    {
+                      'description': 'Registro nao encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Error' },
+                              'example': { 'message': 'Nao encontrado' },
+                            },
+                        },
+                    },
                 },
-                "value": {
-                  "type": "number",
-                  "format": "float",
-                  "example": 42
-                }
-              }
-            }
-          },
-          "total": {
-            "type": "object",
-            "properties": {
-              "orderAmount": {
-                "type": "number",
-                "format": "float",
-                "example": 42
-              }
-            }
-          }
+            },
+          'put':
+            {
+              'tags': ['Categorias'],
+              'summary': 'Atualiza um registro de categorias',
+              'parameters':
+                [
+                  {
+                    'name': 'id',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'integer', 'example': 1 },
+                  },
+                ],
+              'requestBody':
+                {
+                  'required': true,
+                  'content':
+                    {
+                      'application/json':
+                        {
+                          'schema':
+                            { '$ref': '#/components/schemas/CategoriaRequest' },
+                        },
+                    },
+                },
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'Registro atualizado com sucesso',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Categoria' },
+                            },
+                        },
+                    },
+                  '404':
+                    {
+                      'description': 'Registro nao encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Error' },
+                              'example': { 'message': 'Nao encontrado' },
+                            },
+                        },
+                    },
+                },
+            },
         },
-        "required": [
-          "id"
-        ]
-      },
-      "IfoodWebhookResponse": {
-        "type": "object",
-        "properties": {
-          "message": {
-            "type": "string",
-            "example": "Webhook recebido com sucesso"
-          },
-          "data": {
-            "$ref": "#/components/schemas/IfoodPedido"
-          }
+      '/clientes':
+        {
+          'get':
+            {
+              'tags': ['Clientes'],
+              'summary': 'Lista clientes',
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'Lista retornada com sucesso',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                {
+                                  'type': 'array',
+                                  'items':
+                                    { '$ref': '#/components/schemas/Cliente' },
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+          'post':
+            {
+              'tags': ['Clientes'],
+              'summary': 'Cria um registro em clientes',
+              'requestBody':
+                {
+                  'required': true,
+                  'content':
+                    {
+                      'application/json':
+                        {
+                          'schema':
+                            { '$ref': '#/components/schemas/ClienteRequest' },
+                        },
+                    },
+                },
+              'responses':
+                {
+                  '201':
+                    {
+                      'description': 'Registro criado com sucesso',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Cliente' },
+                            },
+                        },
+                    },
+                },
+            },
         },
-        "required": [
-          "message",
-          "data"
-        ]
-      },
-      "RelatorioVendas": {
-        "type": "object",
-        "properties": {
-          "total_pedidos": {
-            "type": "integer",
-            "example": 1
-          },
-          "valor_total": {
-            "type": "number",
-            "format": "float",
-            "example": 18.5
-          }
+      '/clientes/{id}':
+        {
+          'get':
+            {
+              'tags': ['Clientes'],
+              'summary': 'Busca um registro de clientes pelo id',
+              'parameters':
+                [
+                  {
+                    'name': 'id',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'integer', 'example': 1 },
+                  },
+                ],
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'Registro encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Cliente' },
+                            },
+                        },
+                    },
+                  '404':
+                    {
+                      'description': 'Registro nao encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Error' },
+                              'example': { 'message': 'Nao encontrado' },
+                            },
+                        },
+                    },
+                },
+            },
+          'delete':
+            {
+              'tags': ['Clientes'],
+              'summary': 'Remove um registro de clientes',
+              'parameters':
+                [
+                  {
+                    'name': 'id',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'integer', 'example': 1 },
+                  },
+                ],
+              'responses':
+                {
+                  '204': { 'description': 'Registro removido com sucesso' },
+                  '404':
+                    {
+                      'description': 'Registro nao encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Error' },
+                              'example': { 'message': 'Nao encontrado' },
+                            },
+                        },
+                    },
+                },
+            },
+          'put':
+            {
+              'tags': ['Clientes'],
+              'summary': 'Atualiza um registro de clientes',
+              'parameters':
+                [
+                  {
+                    'name': 'id',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'integer', 'example': 1 },
+                  },
+                ],
+              'requestBody':
+                {
+                  'required': true,
+                  'content':
+                    {
+                      'application/json':
+                        {
+                          'schema':
+                            { '$ref': '#/components/schemas/ClienteRequest' },
+                        },
+                    },
+                },
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'Registro atualizado com sucesso',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Cliente' },
+                            },
+                        },
+                    },
+                  '404':
+                    {
+                      'description': 'Registro nao encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Error' },
+                              'example': { 'message': 'Nao encontrado' },
+                            },
+                        },
+                    },
+                },
+            },
+          'patch':
+            {
+              'tags': ['Clientes'],
+              'summary': 'Atualiza parcialmente um registro de clientes',
+              'parameters':
+                [
+                  {
+                    'name': 'id',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'integer', 'example': 1 },
+                  },
+                ],
+              'requestBody':
+                {
+                  'required': true,
+                  'content':
+                    {
+                      'application/json':
+                        {
+                          'schema':
+                            { '$ref': '#/components/schemas/ClienteRequest' },
+                        },
+                    },
+                },
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'Registro atualizado com sucesso',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Cliente' },
+                            },
+                        },
+                    },
+                  '404':
+                    {
+                      'description': 'Registro nao encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Error' },
+                              'example': { 'message': 'Nao encontrado' },
+                            },
+                        },
+                    },
+                },
+            },
         },
-        "required": [
-          "total_pedidos",
-          "valor_total"
-        ]
-      },
-      "RelatorioFaturamento": {
-        "type": "object",
-        "properties": {
-          "faturamento_total": {
-            "type": "number",
-            "format": "float",
-            "example": 50.25
-          }
+      '/comandas':
+        {
+          'get':
+            {
+              'tags': ['Comandas'],
+              'summary': 'Lista comandas',
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'Lista retornada com sucesso',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                {
+                                  'type': 'array',
+                                  'items':
+                                    { '$ref': '#/components/schemas/Comanda' },
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+          'post':
+            {
+              'tags': ['Comandas'],
+              'summary': 'Cria um registro em comandas',
+              'requestBody':
+                {
+                  'required': true,
+                  'content':
+                    {
+                      'application/json':
+                        {
+                          'schema':
+                            { '$ref': '#/components/schemas/ComandaRequest' },
+                        },
+                    },
+                },
+              'responses':
+                {
+                  '201':
+                    {
+                      'description': 'Registro criado com sucesso',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Comanda' },
+                            },
+                        },
+                    },
+                },
+            },
         },
-        "required": [
-          "faturamento_total"
-        ]
-      },
-      "ProdutoMaisVendido": {
-        "type": "object",
-        "properties": {
-          "produto": {
-            "type": "string",
-            "example": "X-Burguer"
-          },
-          "quantidade": {
-            "type": "integer",
-            "example": 2
-          }
+      '/comandas/{id}':
+        {
+          'get':
+            {
+              'tags': ['Comandas'],
+              'summary': 'Busca um registro de comandas pelo id',
+              'parameters':
+                [
+                  {
+                    'name': 'id',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'integer', 'example': 1 },
+                  },
+                ],
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'Registro encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Comanda' },
+                            },
+                        },
+                    },
+                  '404':
+                    {
+                      'description': 'Registro nao encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Error' },
+                              'example': { 'message': 'Nao encontrado' },
+                            },
+                        },
+                    },
+                },
+            },
+          'delete':
+            {
+              'tags': ['Comandas'],
+              'summary': 'Remove um registro de comandas',
+              'parameters':
+                [
+                  {
+                    'name': 'id',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'integer', 'example': 1 },
+                  },
+                ],
+              'responses':
+                {
+                  '204': { 'description': 'Registro removido com sucesso' },
+                  '404':
+                    {
+                      'description': 'Registro nao encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Error' },
+                              'example': { 'message': 'Nao encontrado' },
+                            },
+                        },
+                    },
+                },
+            },
+          'patch':
+            {
+              'tags': ['Comandas'],
+              'summary': 'Atualiza parcialmente um registro de comandas',
+              'parameters':
+                [
+                  {
+                    'name': 'id',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'integer', 'example': 1 },
+                  },
+                ],
+              'requestBody':
+                {
+                  'required': true,
+                  'content':
+                    {
+                      'application/json':
+                        {
+                          'schema':
+                            { '$ref': '#/components/schemas/ComandaRequest' },
+                        },
+                    },
+                },
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'Registro atualizado com sucesso',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Comanda' },
+                            },
+                        },
+                    },
+                  '404':
+                    {
+                      'description': 'Registro nao encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Error' },
+                              'example': { 'message': 'Nao encontrado' },
+                            },
+                        },
+                    },
+                },
+            },
         },
-        "required": [
-          "produto",
-          "quantidade"
-        ]
-      },
-      "VendasPorFuncionario": {
-        "type": "object",
-        "properties": {
-          "funcionario": {
-            "type": "string",
-            "example": "Desconhecido"
-          },
-          "total_vendas": {
-            "type": "number",
-            "format": "float",
-            "example": 18.5
-          }
+      '/comandas/{id}/itens':
+        {
+          'get':
+            {
+              'tags': ['Comanda Itens'],
+              'summary': 'Lista itens de Comanda',
+              'parameters':
+                [
+                  {
+                    'name': 'id',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'integer', 'example': 1 },
+                  },
+                ],
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'Itens retornados com sucesso',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                {
+                                  'type': 'array',
+                                  'items':
+                                    {
+                                      '$ref': '#/components/schemas/ComandaItemResponse',
+                                    },
+                                },
+                            },
+                        },
+                    },
+                  '404':
+                    {
+                      'description': 'Comanda nao encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Error' },
+                            },
+                        },
+                    },
+                },
+            },
+          'post':
+            {
+              'tags': ['Comanda Itens'],
+              'summary': 'Cria item em Comanda',
+              'parameters':
+                [
+                  {
+                    'name': 'id',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'integer', 'example': 1 },
+                  },
+                ],
+              'requestBody':
+                {
+                  'required': true,
+                  'content':
+                    {
+                      'application/json':
+                        {
+                          'schema':
+                            { '$ref': '#/components/schemas/ItemRequest' },
+                        },
+                    },
+                },
+              'responses':
+                {
+                  '201':
+                    {
+                      'description': 'Item criado com sucesso',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ComandaItemResponse',
+                                },
+                            },
+                        },
+                    },
+                  '404':
+                    {
+                      'description': 'Comanda nao encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Error' },
+                            },
+                        },
+                    },
+                },
+            },
         },
-        "required": [
-          "funcionario",
-          "total_vendas"
-        ]
-      }
-    }
-  }
+      '/comandas/{id}/itens/{itemId}':
+        {
+          'get':
+            {
+              'tags': ['Comanda Itens'],
+              'summary': 'Busca item pelo id',
+              'parameters':
+                [
+                  {
+                    'name': 'id',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'integer', 'example': 1 },
+                  },
+                  {
+                    'name': 'itemId',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'integer', 'example': 1 },
+                  },
+                ],
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'Item encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ComandaItemResponse',
+                                },
+                            },
+                        },
+                    },
+                  '404':
+                    {
+                      'description': 'Item nao encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Error' },
+                              'example': { 'message': 'Item nao encontrado' },
+                            },
+                        },
+                    },
+                },
+            },
+          'patch':
+            {
+              'tags': ['Comanda Itens'],
+              'summary': 'Atualiza parcialmente um item',
+              'parameters':
+                [
+                  {
+                    'name': 'id',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'integer', 'example': 1 },
+                  },
+                  {
+                    'name': 'itemId',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'integer', 'example': 1 },
+                  },
+                ],
+              'requestBody':
+                {
+                  'required': true,
+                  'content':
+                    {
+                      'application/json':
+                        {
+                          'schema':
+                            { '$ref': '#/components/schemas/ItemRequest' },
+                        },
+                    },
+                },
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'Item atualizado com sucesso',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ComandaItemResponse',
+                                },
+                            },
+                        },
+                    },
+                  '404':
+                    {
+                      'description': 'Item nao encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Error' },
+                              'example': { 'message': 'Item nao encontrado' },
+                            },
+                        },
+                    },
+                },
+            },
+          'delete':
+            {
+              'tags': ['Comanda Itens'],
+              'summary': 'Remove um item',
+              'parameters':
+                [
+                  {
+                    'name': 'id',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'integer', 'example': 1 },
+                  },
+                  {
+                    'name': 'itemId',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'integer', 'example': 1 },
+                  },
+                ],
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'Item removido com sucesso',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ItemRemovidoResponse',
+                                },
+                            },
+                        },
+                    },
+                  '404':
+                    {
+                      'description': 'Item nao encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Error' },
+                              'example': { 'message': 'Item nao encontrado' },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      '/integracoes/ifood/pedidos':
+        {
+          'get':
+            {
+              'tags': ['Integracoes iFood'],
+              'summary': 'Lista pedidos recebidos do iFood',
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'Pedidos do iFood retornados com sucesso',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                {
+                                  'type': 'array',
+                                  'items':
+                                    {
+                                      '$ref': '#/components/schemas/IfoodPedido',
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      '/integracoes/ifood/pedidos/{id}':
+        {
+          'get':
+            {
+              'tags': ['Integracoes iFood'],
+              'summary': 'Busca pedido do iFood pelo id interno',
+              'parameters':
+                [
+                  {
+                    'name': 'id',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'integer', 'example': 1 },
+                  },
+                ],
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'Pedido do iFood encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/IfoodPedido' },
+                            },
+                        },
+                    },
+                  '404':
+                    {
+                      'description': 'Pedido do iFood nao encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Error' },
+                              'example':
+                                { 'message': 'Pedido do iFood nao encontrado' },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      '/integracoes/ifood/webhook':
+        {
+          'post':
+            {
+              'tags': ['Integracoes iFood'],
+              'summary': 'Recebe webhook de pedido do iFood',
+              'requestBody':
+                {
+                  'required': true,
+                  'content':
+                    {
+                      'application/json':
+                        {
+                          'schema':
+                            {
+                              '$ref': '#/components/schemas/IfoodWebhookPayload',
+                            },
+                        },
+                    },
+                },
+              'responses':
+                {
+                  '201':
+                    {
+                      'description': 'Webhook recebido com sucesso',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/IfoodWebhookResponse',
+                                },
+                            },
+                        },
+                    },
+                  '400':
+                    {
+                      'description': 'Payload invalido',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Error' },
+                              'example': { 'message': 'Payload invalido' },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      '/mesas':
+        {
+          'get':
+            {
+              'tags': ['Mesas'],
+              'summary': 'Lista mesas',
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'Lista retornada com sucesso',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                {
+                                  'type': 'array',
+                                  'items':
+                                    { '$ref': '#/components/schemas/Mesa' },
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+          'post':
+            {
+              'tags': ['Mesas'],
+              'summary': 'Cria um registro em mesas',
+              'requestBody':
+                {
+                  'required': true,
+                  'content':
+                    {
+                      'application/json':
+                        {
+                          'schema':
+                            { '$ref': '#/components/schemas/MesaRequest' },
+                        },
+                    },
+                },
+              'responses':
+                {
+                  '201':
+                    {
+                      'description': 'Registro criado com sucesso',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema': { '$ref': '#/components/schemas/Mesa' },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      '/mesas/{id}':
+        {
+          'get':
+            {
+              'tags': ['Mesas'],
+              'summary': 'Busca um registro de mesas pelo id',
+              'parameters':
+                [
+                  {
+                    'name': 'id',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'integer', 'example': 1 },
+                  },
+                ],
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'Registro encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema': { '$ref': '#/components/schemas/Mesa' },
+                            },
+                        },
+                    },
+                  '404':
+                    {
+                      'description': 'Registro nao encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Error' },
+                              'example': { 'message': 'Nao encontrado' },
+                            },
+                        },
+                    },
+                },
+            },
+          'delete':
+            {
+              'tags': ['Mesas'],
+              'summary': 'Remove um registro de mesas',
+              'parameters':
+                [
+                  {
+                    'name': 'id',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'integer', 'example': 1 },
+                  },
+                ],
+              'responses':
+                {
+                  '204': { 'description': 'Registro removido com sucesso' },
+                  '404':
+                    {
+                      'description': 'Registro nao encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Error' },
+                              'example': { 'message': 'Nao encontrado' },
+                            },
+                        },
+                    },
+                },
+            },
+          'patch':
+            {
+              'tags': ['Mesas'],
+              'summary': 'Atualiza parcialmente um registro de mesas',
+              'parameters':
+                [
+                  {
+                    'name': 'id',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'integer', 'example': 1 },
+                  },
+                ],
+              'requestBody':
+                {
+                  'required': true,
+                  'content':
+                    {
+                      'application/json':
+                        {
+                          'schema':
+                            { '$ref': '#/components/schemas/MesaRequest' },
+                        },
+                    },
+                },
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'Registro atualizado com sucesso',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema': { '$ref': '#/components/schemas/Mesa' },
+                            },
+                        },
+                    },
+                  '404':
+                    {
+                      'description': 'Registro nao encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Error' },
+                              'example': { 'message': 'Nao encontrado' },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      '/pagamentos':
+        {
+          'get':
+            {
+              'tags': ['Pagamentos'],
+              'summary': 'Lista pagamentos',
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'Lista retornada com sucesso',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                {
+                                  'type': 'array',
+                                  'items':
+                                    {
+                                      '$ref': '#/components/schemas/Pagamento',
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+          'post':
+            {
+              'tags': ['Pagamentos'],
+              'summary': 'Cria um registro em pagamentos',
+              'requestBody':
+                {
+                  'required': true,
+                  'content':
+                    {
+                      'application/json':
+                        {
+                          'schema':
+                            { '$ref': '#/components/schemas/PagamentoRequest' },
+                        },
+                    },
+                },
+              'responses':
+                {
+                  '201':
+                    {
+                      'description': 'Registro criado com sucesso',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Pagamento' },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      '/pagamentos/{id}':
+        {
+          'get':
+            {
+              'tags': ['Pagamentos'],
+              'summary': 'Busca um registro de pagamentos pelo id',
+              'parameters':
+                [
+                  {
+                    'name': 'id',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'integer', 'example': 1 },
+                  },
+                ],
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'Registro encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Pagamento' },
+                            },
+                        },
+                    },
+                  '404':
+                    {
+                      'description': 'Registro nao encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Error' },
+                              'example': { 'message': 'Nao encontrado' },
+                            },
+                        },
+                    },
+                },
+            },
+          'delete':
+            {
+              'tags': ['Pagamentos'],
+              'summary': 'Remove um registro de pagamentos',
+              'parameters':
+                [
+                  {
+                    'name': 'id',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'integer', 'example': 1 },
+                  },
+                ],
+              'responses':
+                {
+                  '204': { 'description': 'Registro removido com sucesso' },
+                  '404':
+                    {
+                      'description': 'Registro nao encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Error' },
+                              'example': { 'message': 'Nao encontrado' },
+                            },
+                        },
+                    },
+                },
+            },
+          'patch':
+            {
+              'tags': ['Pagamentos'],
+              'summary': 'Atualiza parcialmente um registro de pagamentos',
+              'parameters':
+                [
+                  {
+                    'name': 'id',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'integer', 'example': 1 },
+                  },
+                ],
+              'requestBody':
+                {
+                  'required': true,
+                  'content':
+                    {
+                      'application/json':
+                        {
+                          'schema':
+                            { '$ref': '#/components/schemas/PagamentoRequest' },
+                        },
+                    },
+                },
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'Registro atualizado com sucesso',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Pagamento' },
+                            },
+                        },
+                    },
+                  '404':
+                    {
+                      'description': 'Registro nao encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Error' },
+                              'example': { 'message': 'Nao encontrado' },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      '/pedidos':
+        {
+          'get':
+            {
+              'tags': ['Pedidos'],
+              'summary': 'Lista pedidos',
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'Lista retornada com sucesso',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                {
+                                  'type': 'array',
+                                  'items':
+                                    { '$ref': '#/components/schemas/Pedido' },
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+          'post':
+            {
+              'tags': ['Pedidos'],
+              'summary': 'Cria um registro em pedidos',
+              'requestBody':
+                {
+                  'required': true,
+                  'content':
+                    {
+                      'application/json':
+                        {
+                          'schema':
+                            { '$ref': '#/components/schemas/PedidoRequest' },
+                        },
+                    },
+                },
+              'responses':
+                {
+                  '201':
+                    {
+                      'description': 'Registro criado com sucesso',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Pedido' },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      '/pedidos/{id}':
+        {
+          'get':
+            {
+              'tags': ['Pedidos'],
+              'summary': 'Busca um registro de pedidos pelo id',
+              'parameters':
+                [
+                  {
+                    'name': 'id',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'integer', 'example': 1 },
+                  },
+                ],
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'Registro encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Pedido' },
+                            },
+                        },
+                    },
+                  '404':
+                    {
+                      'description': 'Registro nao encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Error' },
+                              'example': { 'message': 'Nao encontrado' },
+                            },
+                        },
+                    },
+                },
+            },
+          'delete':
+            {
+              'tags': ['Pedidos'],
+              'summary': 'Remove um registro de pedidos',
+              'parameters':
+                [
+                  {
+                    'name': 'id',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'integer', 'example': 1 },
+                  },
+                ],
+              'responses':
+                {
+                  '204': { 'description': 'Registro removido com sucesso' },
+                  '404':
+                    {
+                      'description': 'Registro nao encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Error' },
+                              'example': { 'message': 'Nao encontrado' },
+                            },
+                        },
+                    },
+                },
+            },
+          'put':
+            {
+              'tags': ['Pedidos'],
+              'summary': 'Atualiza um registro de pedidos',
+              'parameters':
+                [
+                  {
+                    'name': 'id',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'integer', 'example': 1 },
+                  },
+                ],
+              'requestBody':
+                {
+                  'required': true,
+                  'content':
+                    {
+                      'application/json':
+                        {
+                          'schema':
+                            { '$ref': '#/components/schemas/PedidoRequest' },
+                        },
+                    },
+                },
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'Registro atualizado com sucesso',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Pedido' },
+                            },
+                        },
+                    },
+                  '404':
+                    {
+                      'description': 'Registro nao encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Error' },
+                              'example': { 'message': 'Nao encontrado' },
+                            },
+                        },
+                    },
+                },
+            },
+          'patch':
+            {
+              'tags': ['Pedidos'],
+              'summary': 'Atualiza parcialmente um registro de pedidos',
+              'parameters':
+                [
+                  {
+                    'name': 'id',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'integer', 'example': 1 },
+                  },
+                ],
+              'requestBody':
+                {
+                  'required': true,
+                  'content':
+                    {
+                      'application/json':
+                        {
+                          'schema':
+                            { '$ref': '#/components/schemas/PedidoRequest' },
+                        },
+                    },
+                },
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'Registro atualizado com sucesso',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Pedido' },
+                            },
+                        },
+                    },
+                  '404':
+                    {
+                      'description': 'Registro nao encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Error' },
+                              'example': { 'message': 'Nao encontrado' },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      '/pedidos/{id}/itens':
+        {
+          'get':
+            {
+              'tags': ['Pedido Itens'],
+              'summary': 'Lista itens de Pedido',
+              'parameters':
+                [
+                  {
+                    'name': 'id',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'integer', 'example': 1 },
+                  },
+                ],
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'Itens retornados com sucesso',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                {
+                                  'type': 'array',
+                                  'items':
+                                    {
+                                      '$ref': '#/components/schemas/PedidoItemResponse',
+                                    },
+                                },
+                            },
+                        },
+                    },
+                  '404':
+                    {
+                      'description': 'Pedido nao encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Error' },
+                            },
+                        },
+                    },
+                },
+            },
+          'post':
+            {
+              'tags': ['Pedido Itens'],
+              'summary': 'Cria item em Pedido',
+              'parameters':
+                [
+                  {
+                    'name': 'id',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'integer', 'example': 1 },
+                  },
+                ],
+              'requestBody':
+                {
+                  'required': true,
+                  'content':
+                    {
+                      'application/json':
+                        {
+                          'schema':
+                            { '$ref': '#/components/schemas/ItemRequest' },
+                        },
+                    },
+                },
+              'responses':
+                {
+                  '201':
+                    {
+                      'description': 'Item criado com sucesso',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/PedidoItemResponse',
+                                },
+                            },
+                        },
+                    },
+                  '404':
+                    {
+                      'description': 'Pedido nao encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Error' },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      '/pedidos/{id}/itens/{itemId}':
+        {
+          'get':
+            {
+              'tags': ['Pedido Itens'],
+              'summary': 'Busca item pelo id',
+              'parameters':
+                [
+                  {
+                    'name': 'id',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'integer', 'example': 1 },
+                  },
+                  {
+                    'name': 'itemId',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'integer', 'example': 1 },
+                  },
+                ],
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'Item encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/PedidoItemResponse',
+                                },
+                            },
+                        },
+                    },
+                  '404':
+                    {
+                      'description': 'Item nao encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Error' },
+                              'example': { 'message': 'Item nao encontrado' },
+                            },
+                        },
+                    },
+                },
+            },
+          'patch':
+            {
+              'tags': ['Pedido Itens'],
+              'summary': 'Atualiza parcialmente um item',
+              'parameters':
+                [
+                  {
+                    'name': 'id',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'integer', 'example': 1 },
+                  },
+                  {
+                    'name': 'itemId',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'integer', 'example': 1 },
+                  },
+                ],
+              'requestBody':
+                {
+                  'required': true,
+                  'content':
+                    {
+                      'application/json':
+                        {
+                          'schema':
+                            { '$ref': '#/components/schemas/ItemRequest' },
+                        },
+                    },
+                },
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'Item atualizado com sucesso',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/PedidoItemResponse',
+                                },
+                            },
+                        },
+                    },
+                  '404':
+                    {
+                      'description': 'Item nao encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Error' },
+                              'example': { 'message': 'Item nao encontrado' },
+                            },
+                        },
+                    },
+                },
+            },
+          'delete':
+            {
+              'tags': ['Pedido Itens'],
+              'summary': 'Remove um item',
+              'parameters':
+                [
+                  {
+                    'name': 'id',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'integer', 'example': 1 },
+                  },
+                  {
+                    'name': 'itemId',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'integer', 'example': 1 },
+                  },
+                ],
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'Item removido com sucesso',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ItemRemovidoResponse',
+                                },
+                            },
+                        },
+                    },
+                  '404':
+                    {
+                      'description': 'Item nao encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Error' },
+                              'example': { 'message': 'Item nao encontrado' },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      '/produtos':
+        {
+          'get':
+            {
+              'tags': ['Produtos'],
+              'summary': 'Lista produtos',
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'Lista retornada com sucesso',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                {
+                                  'type': 'array',
+                                  'items':
+                                    { '$ref': '#/components/schemas/Produto' },
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+          'post':
+            {
+              'tags': ['Produtos'],
+              'summary': 'Cria um registro em produtos',
+              'requestBody':
+                {
+                  'required': true,
+                  'content':
+                    {
+                      'application/json':
+                        {
+                          'schema':
+                            { '$ref': '#/components/schemas/ProdutoRequest' },
+                        },
+                    },
+                },
+              'responses':
+                {
+                  '201':
+                    {
+                      'description': 'Registro criado com sucesso',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Produto' },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      '/produtos/{id}':
+        {
+          'get':
+            {
+              'tags': ['Produtos'],
+              'summary': 'Busca um registro de produtos pelo id',
+              'parameters':
+                [
+                  {
+                    'name': 'id',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'integer', 'example': 1 },
+                  },
+                ],
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'Registro encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Produto' },
+                            },
+                        },
+                    },
+                  '404':
+                    {
+                      'description': 'Registro nao encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Error' },
+                              'example': { 'message': 'Nao encontrado' },
+                            },
+                        },
+                    },
+                },
+            },
+          'delete':
+            {
+              'tags': ['Produtos'],
+              'summary': 'Remove um registro de produtos',
+              'parameters':
+                [
+                  {
+                    'name': 'id',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'integer', 'example': 1 },
+                  },
+                ],
+              'responses':
+                {
+                  '204': { 'description': 'Registro removido com sucesso' },
+                  '404':
+                    {
+                      'description': 'Registro nao encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Error' },
+                              'example': { 'message': 'Nao encontrado' },
+                            },
+                        },
+                    },
+                },
+            },
+          'put':
+            {
+              'tags': ['Produtos'],
+              'summary': 'Atualiza um registro de produtos',
+              'parameters':
+                [
+                  {
+                    'name': 'id',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'integer', 'example': 1 },
+                  },
+                ],
+              'requestBody':
+                {
+                  'required': true,
+                  'content':
+                    {
+                      'application/json':
+                        {
+                          'schema':
+                            { '$ref': '#/components/schemas/ProdutoRequest' },
+                        },
+                    },
+                },
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'Registro atualizado com sucesso',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Produto' },
+                            },
+                        },
+                    },
+                  '404':
+                    {
+                      'description': 'Registro nao encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Error' },
+                              'example': { 'message': 'Nao encontrado' },
+                            },
+                        },
+                    },
+                },
+            },
+          'patch':
+            {
+              'tags': ['Produtos'],
+              'summary': 'Atualiza parcialmente um registro de produtos',
+              'parameters':
+                [
+                  {
+                    'name': 'id',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'integer', 'example': 1 },
+                  },
+                ],
+              'requestBody':
+                {
+                  'required': true,
+                  'content':
+                    {
+                      'application/json':
+                        {
+                          'schema':
+                            { '$ref': '#/components/schemas/ProdutoRequest' },
+                        },
+                    },
+                },
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'Registro atualizado com sucesso',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Produto' },
+                            },
+                        },
+                    },
+                  '404':
+                    {
+                      'description': 'Registro nao encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Error' },
+                              'example': { 'message': 'Nao encontrado' },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      '/relatorios/vendas':
+        {
+          'get':
+            {
+              'tags': ['Relatorios'],
+              'summary': 'Retorna quantidade de pedidos e valor total vendido',
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'Relatorio retornado com sucesso',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/RelatorioVendas',
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      '/relatorios/faturamento':
+        {
+          'get':
+            {
+              'tags': ['Relatorios'],
+              'summary': 'Retorna faturamento total dos pagamentos pagos',
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'Relatorio retornado com sucesso',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/RelatorioFaturamento',
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      '/relatorios/produtos-mais-vendidos':
+        {
+          'get':
+            {
+              'tags': ['Relatorios'],
+              'summary': 'Retorna ranking de produtos mais vendidos',
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'Relatorio retornado com sucesso',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                {
+                                  'type': 'array',
+                                  'items':
+                                    {
+                                      '$ref': '#/components/schemas/ProdutoMaisVendido',
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      '/relatorios/vendas-por-funcionario':
+        {
+          'get':
+            {
+              'tags': ['Relatorios'],
+              'summary': 'Retorna total de vendas por funcionario',
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'Relatorio retornado com sucesso',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                {
+                                  'type': 'array',
+                                  'items':
+                                    {
+                                      '$ref': '#/components/schemas/VendasPorFuncionario',
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      '/usuarios':
+        {
+          'get':
+            {
+              'tags': ['Usuarios'],
+              'summary': 'Lista usuarios',
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'Lista retornada com sucesso',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                {
+                                  'type': 'array',
+                                  'items':
+                                    { '$ref': '#/components/schemas/Usuario' },
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+          'post':
+            {
+              'tags': ['Usuarios'],
+              'summary': 'Cria um registro em usuarios',
+              'requestBody':
+                {
+                  'required': true,
+                  'content':
+                    {
+                      'application/json':
+                        {
+                          'schema':
+                            { '$ref': '#/components/schemas/UsuarioRequest' },
+                        },
+                    },
+                },
+              'responses':
+                {
+                  '201':
+                    {
+                      'description': 'Registro criado com sucesso',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Usuario' },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      '/usuarios/{id}':
+        {
+          'get':
+            {
+              'tags': ['Usuarios'],
+              'summary': 'Busca um registro de usuarios pelo id',
+              'parameters':
+                [
+                  {
+                    'name': 'id',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'integer', 'example': 1 },
+                  },
+                ],
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'Registro encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Usuario' },
+                            },
+                        },
+                    },
+                  '404':
+                    {
+                      'description': 'Registro nao encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Error' },
+                              'example': { 'message': 'Nao encontrado' },
+                            },
+                        },
+                    },
+                },
+            },
+          'delete':
+            {
+              'tags': ['Usuarios'],
+              'summary': 'Remove um registro de usuarios',
+              'parameters':
+                [
+                  {
+                    'name': 'id',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'integer', 'example': 1 },
+                  },
+                ],
+              'responses':
+                {
+                  '204': { 'description': 'Registro removido com sucesso' },
+                  '404':
+                    {
+                      'description': 'Registro nao encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Error' },
+                              'example': { 'message': 'Nao encontrado' },
+                            },
+                        },
+                    },
+                },
+            },
+          'put':
+            {
+              'tags': ['Usuarios'],
+              'summary': 'Atualiza um registro de usuarios',
+              'parameters':
+                [
+                  {
+                    'name': 'id',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'integer', 'example': 1 },
+                  },
+                ],
+              'requestBody':
+                {
+                  'required': true,
+                  'content':
+                    {
+                      'application/json':
+                        {
+                          'schema':
+                            { '$ref': '#/components/schemas/UsuarioRequest' },
+                        },
+                    },
+                },
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'Registro atualizado com sucesso',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Usuario' },
+                            },
+                        },
+                    },
+                  '404':
+                    {
+                      'description': 'Registro nao encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Error' },
+                              'example': { 'message': 'Nao encontrado' },
+                            },
+                        },
+                    },
+                },
+            },
+          'patch':
+            {
+              'tags': ['Usuarios'],
+              'summary': 'Atualiza parcialmente um registro de usuarios',
+              'parameters':
+                [
+                  {
+                    'name': 'id',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'integer', 'example': 1 },
+                  },
+                ],
+              'requestBody':
+                {
+                  'required': true,
+                  'content':
+                    {
+                      'application/json':
+                        {
+                          'schema':
+                            { '$ref': '#/components/schemas/UsuarioRequest' },
+                        },
+                    },
+                },
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'Registro atualizado com sucesso',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Usuario' },
+                            },
+                        },
+                    },
+                  '404':
+                    {
+                      'description': 'Registro nao encontrado',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/Error' },
+                              'example': { 'message': 'Nao encontrado' },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+    },
+  'components':
+    {
+      'schemas':
+        {
+          'StatusResponse':
+            {
+              'type': 'object',
+              'properties':
+                {
+                  'message':
+                    { 'type': 'string', 'example': 'API Restaurante Mock' },
+                },
+            },
+          'Error':
+            {
+              'type': 'object',
+              'properties':
+                {
+                  'message': { 'type': 'string', 'example': 'Nao encontrado' },
+                },
+            },
+          'Categoria':
+            {
+              'type': 'object',
+              'properties':
+                {
+                  'id': { 'type': 'integer', 'example': 1 },
+                  'nome': { 'type': 'string', 'example': 'lanches' },
+                },
+              'required': ['id', 'nome'],
+            },
+          'CategoriaRequest':
+            {
+              'type': 'object',
+              'additionalProperties': true,
+              'properties':
+                { 'nome': { 'type': 'string', 'example': 'lanches' } },
+            },
+          'Cliente':
+            {
+              'type': 'object',
+              'properties':
+                {
+                  'id': { 'type': 'integer', 'example': 1 },
+                  'nome': { 'type': 'string', 'example': 'Joao' },
+                  'telefone': { 'type': 'string', 'example': '83999999999' },
+                  'endereco_id': { 'type': 'integer', 'example': 1 },
+                },
+              'required': ['id', 'nome', 'telefone', 'endereco_id'],
+            },
+          'ClienteRequest':
+            {
+              'type': 'object',
+              'additionalProperties': true,
+              'properties':
+                {
+                  'nome': { 'type': 'string', 'example': 'Joao' },
+                  'telefone': { 'type': 'string', 'example': '83999999999' },
+                  'endereco_id': { 'type': 'integer', 'example': 1 },
+                },
+            },
+          'Comanda':
+            {
+              'type': 'object',
+              'properties':
+                {
+                  'id': { 'type': 'integer', 'example': 1 },
+                  'mesa_id': { 'type': 'integer', 'example': 1 },
+                  'status': { 'type': 'string', 'example': 'ABERTA' },
+                  'aberta_em':
+                    {
+                      'type': 'string',
+                      'format': 'date-time',
+                      'example': '2026-08-22T23:00:00.000Z',
+                    },
+                  'fechada_em':
+                    {
+                      'type': 'string',
+                      'format': 'date-time',
+                      'example': '2026-08-23T01:00:00.000Z',
+                    },
+                },
+              'required':
+                ['id', 'mesa_id', 'status', 'aberta_em', 'fechada_em'],
+            },
+          'ComandaRequest':
+            {
+              'type': 'object',
+              'additionalProperties': true,
+              'properties':
+                {
+                  'mesa_id': { 'type': 'integer', 'example': 1 },
+                  'status': { 'type': 'string', 'example': 'ABERTA' },
+                  'aberta_em':
+                    {
+                      'type': 'string',
+                      'format': 'date-time',
+                      'example': '2026-08-22T23:00:00.000Z',
+                    },
+                  'fechada_em':
+                    {
+                      'type': 'string',
+                      'format': 'date-time',
+                      'example': '2026-08-23T01:00:00.000Z',
+                    },
+                },
+            },
+          'Produto':
+            {
+              'type': 'object',
+              'properties':
+                {
+                  'id': { 'type': 'integer', 'example': 1 },
+                  'nome': { 'type': 'string', 'example': 'X-Burguer' },
+                  'descricao':
+                    {
+                      'type': 'string',
+                      'example': 'pao bola, carne, queijo mussarela, ovo, bacon e salada',
+                    },
+                  'preco':
+                    { 'type': 'number', 'format': 'float', 'example': 23 },
+                  'categoria_id': { 'type': 'integer', 'example': 1 },
+                },
+              'required': ['id', 'nome', 'descricao', 'preco', 'categoria_id'],
+            },
+          'ProdutoRequest':
+            {
+              'type': 'object',
+              'additionalProperties': true,
+              'properties':
+                {
+                  'nome': { 'type': 'string', 'example': 'X-Burguer' },
+                  'descricao':
+                    {
+                      'type': 'string',
+                      'example': 'pao bola, carne, queijo mussarela, ovo, bacon e salada',
+                    },
+                  'preco':
+                    { 'type': 'number', 'format': 'float', 'example': 23 },
+                  'categoria_id': { 'type': 'integer', 'example': 1 },
+                },
+            },
+          'Mesa':
+            {
+              'type': 'object',
+              'properties':
+                {
+                  'id': { 'type': 'integer', 'example': 1 },
+                  'numero': { 'type': 'integer', 'example': 10 },
+                  'status': { 'type': 'string', 'example': 'PAGO' },
+                },
+              'required': ['id', 'numero', 'status'],
+            },
+          'MesaRequest':
+            {
+              'type': 'object',
+              'additionalProperties': true,
+              'properties':
+                {
+                  'numero': { 'type': 'integer', 'example': 10 },
+                  'status': { 'type': 'string', 'example': 'PAGO' },
+                },
+            },
+          'Pedido':
+            {
+              'type': 'object',
+              'properties':
+                {
+                  'id': { 'type': 'integer', 'example': 1 },
+                  'tipo': { 'type': 'string', 'example': 'BALCAO' },
+                  'status': { 'type': 'string', 'example': 'AGUARDANDO' },
+                  'cliente_id': { 'type': 'integer', 'example': 1 },
+                  'usuario_id': { 'type': 'integer', 'example': 2 },
+                  'total':
+                    { 'type': 'number', 'format': 'float', 'example': 18.5 },
+                  'created_at':
+                    {
+                      'type': 'string',
+                      'format': 'date-time',
+                      'example': '2026-08-22T17:30:00.000Z',
+                    },
+                },
+              'required':
+                [
+                  'id',
+                  'tipo',
+                  'status',
+                  'cliente_id',
+                  'usuario_id',
+                  'total',
+                  'created_at',
+                ],
+            },
+          'PedidoRequest':
+            {
+              'type': 'object',
+              'additionalProperties': true,
+              'properties':
+                {
+                  'tipo': { 'type': 'string', 'example': 'BALCAO' },
+                  'status': { 'type': 'string', 'example': 'AGUARDANDO' },
+                  'cliente_id': { 'type': 'integer', 'example': 1 },
+                  'usuario_id': { 'type': 'integer', 'example': 2 },
+                  'total':
+                    { 'type': 'number', 'format': 'float', 'example': 18.5 },
+                  'created_at':
+                    {
+                      'type': 'string',
+                      'format': 'date-time',
+                      'example': '2026-08-22T17:30:00.000Z',
+                    },
+                },
+            },
+          'ItemRequest':
+            {
+              'type': 'object',
+              'additionalProperties': true,
+              'properties':
+                {
+                  'quantidade': { 'type': 'integer', 'example': 2 },
+                  'preco_unitario':
+                    { 'type': 'number', 'format': 'float', 'example': 20 },
+                  'observacao': { 'type': 'string', 'example': 'sem cebola' },
+                  'produto_id': { 'type': 'integer', 'example': 1 },
+                },
+            },
+          'PedidoItem':
+            {
+              'type': 'object',
+              'properties':
+                {
+                  'id': { 'type': 'integer', 'example': 1 },
+                  'quantidade': { 'type': 'integer', 'example': 2 },
+                  'preco_unitario':
+                    { 'type': 'number', 'format': 'float', 'example': 20 },
+                  'observacao': { 'type': 'string', 'example': '' },
+                  'produto_id': { 'type': 'integer', 'example': 1 },
+                  'pedido_id': { 'type': 'integer', 'example': 1 },
+                },
+              'required':
+                [
+                  'id',
+                  'quantidade',
+                  'preco_unitario',
+                  'observacao',
+                  'produto_id',
+                  'pedido_id',
+                ],
+            },
+          'PedidoItemResponse':
+            {
+              'allOf':
+                [
+                  { '$ref': '#/components/schemas/PedidoItem' },
+                  {
+                    'type': 'object',
+                    'properties':
+                      {
+                        'produto':
+                          {
+                            'nullable': true,
+                            'allOf':
+                              [{ '$ref': '#/components/schemas/Produto' }],
+                          },
+                      },
+                    'required': ['produto'],
+                  },
+                ],
+            },
+          'ComandaItem':
+            {
+              'type': 'object',
+              'properties':
+                {
+                  'id': { 'type': 'integer', 'example': 1 },
+                  'comanda_id': { 'type': 'integer', 'example': 1 },
+                  'produto_id': { 'type': 'integer', 'example': 1 },
+                  'quantidade': { 'type': 'integer', 'example': 2 },
+                  'preco_unitario':
+                    { 'type': 'number', 'format': 'float', 'example': 14 },
+                  'observacao': { 'type': 'string', 'example': 'sem cebola' },
+                },
+              'required':
+                [
+                  'id',
+                  'comanda_id',
+                  'produto_id',
+                  'quantidade',
+                  'preco_unitario',
+                  'observacao',
+                ],
+            },
+          'ComandaItemResponse':
+            {
+              'allOf':
+                [
+                  { '$ref': '#/components/schemas/ComandaItem' },
+                  {
+                    'type': 'object',
+                    'properties':
+                      {
+                        'produto':
+                          {
+                            'nullable': true,
+                            'allOf':
+                              [{ '$ref': '#/components/schemas/Produto' }],
+                          },
+                      },
+                    'required': ['produto'],
+                  },
+                ],
+            },
+          'ItemRemovidoResponse':
+            {
+              'type': 'object',
+              'properties':
+                {
+                  'message':
+                    {
+                      'type': 'string',
+                      'example': 'Item removido com sucesso',
+                    },
+                  'item':
+                    {
+                      'oneOf':
+                        [
+                          { '$ref': '#/components/schemas/PedidoItemResponse' },
+                          {
+                            '$ref': '#/components/schemas/ComandaItemResponse',
+                          },
+                        ],
+                    },
+                },
+              'required': ['message', 'item'],
+            },
+          'Pagamento':
+            {
+              'type': 'object',
+              'properties':
+                {
+                  'id': { 'type': 'integer', 'example': 1 },
+                  'pedido_id': { 'type': 'integer', 'example': 1 },
+                  'metodo': { 'type': 'string', 'example': 'PIX' },
+                  'valor':
+                    { 'type': 'number', 'format': 'float', 'example': 50.25 },
+                  'status': { 'type': 'string', 'example': 'PAGO' },
+                  'pago_em':
+                    {
+                      'type': 'string',
+                      'format': 'date-time',
+                      'example': '2026-08-22T17:30:00.000Z',
+                    },
+                },
+              'required':
+                ['id', 'pedido_id', 'metodo', 'valor', 'status', 'pago_em'],
+            },
+          'PagamentoRequest':
+            {
+              'type': 'object',
+              'additionalProperties': true,
+              'properties':
+                {
+                  'pedido_id': { 'type': 'integer', 'example': 1 },
+                  'metodo': { 'type': 'string', 'example': 'PIX' },
+                  'valor':
+                    { 'type': 'number', 'format': 'float', 'example': 50.25 },
+                  'status': { 'type': 'string', 'example': 'PAGO' },
+                  'pago_em':
+                    {
+                      'type': 'string',
+                      'format': 'date-time',
+                      'example': '2026-08-22T17:30:00.000Z',
+                    },
+                },
+            },
+          'Usuario':
+            {
+              'type': 'object',
+              'properties':
+                {
+                  'id': { 'type': 'integer', 'example': 1 },
+                  'nome': { 'type': 'string', 'example': 'Administrador' },
+                  'email':
+                    {
+                      'type': 'string',
+                      'format': 'email',
+                      'example': 'admin@restaurante.com',
+                    },
+                  'senha_hash':
+                    {
+                      'type': 'string',
+                      'example': '$2b$10$W5Fh3VjX0L8M4s5bM2v9Y.6p6tP7vG0hT8xN2w9WzKz0hXjJ1mQeW',
+                    },
+                  'funcao': { 'type': 'string', 'example': 'ADMIN' },
+                },
+              'required': ['id', 'nome', 'email', 'senha_hash', 'funcao'],
+            },
+          'UsuarioRequest':
+            {
+              'type': 'object',
+              'additionalProperties': true,
+              'properties':
+                {
+                  'nome': { 'type': 'string', 'example': 'Administrador' },
+                  'email':
+                    {
+                      'type': 'string',
+                      'format': 'email',
+                      'example': 'admin@restaurante.com',
+                    },
+                  'senha_hash':
+                    {
+                      'type': 'string',
+                      'example': '$2b$10$W5Fh3VjX0L8M4s5bM2v9Y.6p6tP7vG0hT8xN2w9WzKz0hXjJ1mQeW',
+                    },
+                  'funcao': { 'type': 'string', 'example': 'ADMIN' },
+                },
+            },
+          'IfoodPedido':
+            {
+              'type': 'object',
+              'properties':
+                {
+                  'id': { 'type': 'integer', 'example': 1 },
+                  'pedido_id':
+                    { 'type': 'integer', 'nullable': true, 'example': 1 },
+                  'ifood_order_id': { 'type': 'string', 'example': 'ord_456' },
+                  'payload_json':
+                    { '$ref': '#/components/schemas/IfoodWebhookPayload' },
+                  'status_ifood':
+                    { 'type': 'string', 'example': 'PREPARATION_STARTED' },
+                  'sincronizado_em':
+                    {
+                      'type': 'string',
+                      'format': 'date-time',
+                      'example': '2026-06-24T12:00:00.000Z',
+                    },
+                },
+              'required':
+                [
+                  'id',
+                  'pedido_id',
+                  'ifood_order_id',
+                  'payload_json',
+                  'status_ifood',
+                  'sincronizado_em',
+                ],
+            },
+          'IfoodWebhookPayload':
+            {
+              'type': 'object',
+              'additionalProperties': true,
+              'properties':
+                {
+                  'id': { 'type': 'string', 'example': 'ord_456' },
+                  'createdAt':
+                    {
+                      'type': 'string',
+                      'format': 'date-time',
+                      'example': '2026-08-20T19:30:00Z',
+                    },
+                  'customer':
+                    {
+                      'type': 'object',
+                      'properties':
+                        {
+                          'name': { 'type': 'string', 'example': 'Joao Silva' },
+                          'phone':
+                            { 'type': 'string', 'example': '83999999999' },
+                        },
+                    },
+                  'delivery':
+                    {
+                      'type': 'object',
+                      'properties':
+                        {
+                          'deliveryAddress':
+                            {
+                              'type': 'object',
+                              'properties':
+                                {
+                                  'streetName':
+                                    {
+                                      'type': 'string',
+                                      'example': 'Rua Aprigio Veloso',
+                                    },
+                                  'streetNumber':
+                                    { 'type': 'string', 'example': '882' },
+                                  'neighborhood':
+                                    {
+                                      'type': 'string',
+                                      'example': 'Universitario',
+                                    },
+                                  'city':
+                                    {
+                                      'type': 'string',
+                                      'example': 'Campina Grande',
+                                    },
+                                  'state':
+                                    { 'type': 'string', 'example': 'PB' },
+                                  'postalCode':
+                                    {
+                                      'type': 'string',
+                                      'example': '58429-900',
+                                    },
+                                  'country':
+                                    { 'type': 'string', 'example': 'BR' },
+                                  'reference':
+                                    {
+                                      'type': 'string',
+                                      'example': 'Proximo ao IFPB',
+                                    },
+                                },
+                            },
+                        },
+                    },
+                  'items':
+                    {
+                      'type': 'array',
+                      'items':
+                        {
+                          'type': 'object',
+                          'properties':
+                            {
+                              'id': { 'type': 'string', 'example': 'item_1' },
+                              'name':
+                                { 'type': 'string', 'example': 'X-Burguer' },
+                              'quantity': { 'type': 'integer', 'example': 2 },
+                              'unitPrice':
+                                {
+                                  'type': 'number',
+                                  'format': 'float',
+                                  'example': 18,
+                                },
+                            },
+                        },
+                    },
+                  'payments':
+                    {
+                      'type': 'array',
+                      'items':
+                        {
+                          'type': 'object',
+                          'properties':
+                            {
+                              'method':
+                                { 'type': 'string', 'example': 'ONLINE' },
+                              'value':
+                                {
+                                  'type': 'number',
+                                  'format': 'float',
+                                  'example': 42,
+                                },
+                            },
+                        },
+                    },
+                  'total':
+                    {
+                      'type': 'object',
+                      'properties':
+                        {
+                          'orderAmount':
+                            {
+                              'type': 'number',
+                              'format': 'float',
+                              'example': 42,
+                            },
+                        },
+                    },
+                },
+              'required': ['id'],
+            },
+          'IfoodWebhookResponse':
+            {
+              'type': 'object',
+              'properties':
+                {
+                  'message':
+                    {
+                      'type': 'string',
+                      'example': 'Webhook recebido com sucesso',
+                    },
+                  'data': { '$ref': '#/components/schemas/IfoodPedido' },
+                },
+              'required': ['message', 'data'],
+            },
+          'RelatorioVendas':
+            {
+              'type': 'object',
+              'properties':
+                {
+                  'total_pedidos': { 'type': 'integer', 'example': 1 },
+                  'valor_total':
+                    { 'type': 'number', 'format': 'float', 'example': 18.5 },
+                },
+              'required': ['total_pedidos', 'valor_total'],
+            },
+          'RelatorioFaturamento':
+            {
+              'type': 'object',
+              'properties':
+                {
+                  'faturamento_total':
+                    { 'type': 'number', 'format': 'float', 'example': 50.25 },
+                },
+              'required': ['faturamento_total'],
+            },
+          'ProdutoMaisVendido':
+            {
+              'type': 'object',
+              'properties':
+                {
+                  'produto': { 'type': 'string', 'example': 'X-Burguer' },
+                  'quantidade': { 'type': 'integer', 'example': 2 },
+                },
+              'required': ['produto', 'quantidade'],
+            },
+          'VendasPorFuncionario':
+            {
+              'type': 'object',
+              'properties':
+                {
+                  'funcionario':
+                    { 'type': 'string', 'example': 'Desconhecido' },
+                  'total_vendas':
+                    { 'type': 'number', 'format': 'float', 'example': 18.5 },
+                },
+              'required': ['funcionario', 'total_vendas'],
+            },
+        },
+    },
 }
-
-

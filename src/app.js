@@ -17,7 +17,7 @@ app.use(express.json());
 
 app.use('/categorias', categoriasRoutes);
 app.use('/clientes', clientesRoutes);
-app.use('/comandas/:id/itens', comandaItensRoutes)
+app.use('/comandas/:id/itens', comandaItensRoutes);
 app.use('/comandas', comandasRoutes);
 app.use('/integracoes', integracao_ifoodRoutes);
 app.use('/mesas', mesasRoutes);

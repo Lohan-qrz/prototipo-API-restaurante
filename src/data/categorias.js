@@ -1,4 +1,6 @@
-export const categorias = [{
+export const categorias = [
+  {
     id: 1,
-    nome: "lanches"
-}]
+    nome: 'lanches',
+  },
+];
