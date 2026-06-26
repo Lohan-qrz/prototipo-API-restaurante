@@ -10,7 +10,7 @@ Projeto acadêmico desenvolvido por estudantes do 3º ano do Ensino Médio integ
 - **Curso:** Técnico em Informática
 - **Série:** 3º ano do Ensino Médio
 - **Autores:** Gabriel Lohan, João Gustavo, José Isaias e Lucas Gabriel
-- **Instituição:** preencher com o nome da escola
+- **Instituição:** IFPB - campus Campina Grande
 - **Ano:** 2026
 
 ## Objetivo
