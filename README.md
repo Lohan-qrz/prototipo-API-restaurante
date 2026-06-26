@@ -28,14 +28,17 @@ Por ser um protótipo acadêmico, os dados são armazenados em arquivos JavaScri
 
 ## Estrutura do projeto
 
-+-- src
-|   +-- app.js
-|   +-- data
-|   +-- routes
-+-- package.json
-+-- package-lock.json
-+-- swagger.yaml
-+-- README.md
+```text
+.
+├── src
+│   ├── app.js
+│   ├── data
+│   └── routes
+├── package.json
+├── package-lock.json
+├── swagger.yaml
+└── README.md
+```
 
 ### Principais pastas
 
